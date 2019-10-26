@@ -4,7 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() {
   runApp(MyMap());
-  // loadPins();
 }
 
 class MyMap extends StatefulWidget {
@@ -14,6 +13,7 @@ class MyMap extends StatefulWidget {
 
 class _MyMapState extends State<MyMap> {
   final Map<String, Marker> _markers = {};
+  Set<Circle> circles = new Set<Circle>();
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final locations = await pins.loadPins();
     print(locations[0].name);
@@ -24,10 +24,35 @@ class _MyMapState extends State<MyMap> {
           markerId: MarkerId(locations[i].name),
           position: LatLng(locations[i].lat, locations[i].lng),
           infoWindow: InfoWindow(
-            title: locations[i].name,
-            snippet: locations[i].address,
-          ),
+              title: locations[i].name,
+              snippet: locations[i].address,
+              onTap: () {
+                print('hellooooooo');
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('info here....'),
+                      content: const Text('more items here....'),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Ok'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
         );
+        circles.add(new Circle(
+            circleId: CircleId(i.toString()),
+            center: LatLng(locations[i].lat, locations[i].lng),
+            radius: 60,
+            fillColor: Colors.red.withOpacity(0.3),
+            strokeColor: Colors.transparent));
         _markers[locations[i].name] = marker;
       }
     });
@@ -44,9 +69,10 @@ class _MyMapState extends State<MyMap> {
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target: const LatLng(53.483959, -2.244644),
-              zoom: 11.0,
+              zoom: 15.0,
             ),
             markers: _markers.values.toSet(),
+            circles: circles,
           ),
         ),
       );
