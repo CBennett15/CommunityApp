@@ -31,8 +31,9 @@ class _MyMapState extends State<MyMap> {
         circles.add(new Circle(
             circleId: CircleId(i.toString()),
             center: LatLng(locations[i].lat, locations[i].lng),
-            radius: 25,
-            fillColor: Colors.teal[50]));
+            radius: 60,
+            fillColor: Colors.green.withOpacity(0.3),
+            strokeColor: Colors.transparent));
         _markers[locations[i].name] = marker;
       }
     });
@@ -49,7 +50,7 @@ class _MyMapState extends State<MyMap> {
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target: const LatLng(53.483959, -2.244644),
-              zoom: 17.0,
+              zoom: 15.0,
             ),
             markers: _markers.values.toSet(),
             circles: circles,
