@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './map.dart';
+import './account.dart';
 import 'data/pins_parser.dart' as pins;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -28,7 +29,7 @@ class MyHomeHub extends StatelessWidget {
           children: <Widget>[
             bigCircle,
             new Positioned(
-            child: new CircleButton(onTap: () => print("Help"), iconData: Icons.favorite_border),
+            child: new CircleButton(onTap: () => print("Help"), iconData: Icons.help),
             top: 240.0,
             left: 130.0,
             ),
@@ -38,7 +39,7 @@ class MyHomeHub extends StatelessWidget {
             left: 10.0,
             ),
             new Positioned(
-            child: new CircleButton(onTap: () => print("Leaderboard"), iconData: Icons.place),
+            child: new CircleButton(onTap: () => print("Leaderboard"), iconData: Icons.list),
             top: 120.0,
             right: 10.0,
             ),
@@ -46,12 +47,15 @@ class MyHomeHub extends StatelessWidget {
             child: new CircleButton(onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => MyMap()),
-            ), iconData: Icons.local_pizza),
+            ), iconData: Icons.map),
             top: 10.0,
             left: 130.0,
             ),
             new Positioned(
-            child: new CircleButton(onTap: () => print("Profile"), iconData: Icons.satellite),
+            child: new CircleButton(onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyAccount()),
+            ), iconData: Icons.face),
             top: 120.0,
             left: 130.0,
             ),
