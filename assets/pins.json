@@ -1,14 +1,72 @@
 [
   {
-    "lat": 53.475,
-    "lng": -2.2355,
-    "name": "picaddilly gardens",
-    "address": "Piccadilly GardensManchester M60 1AY"
+    "lat": 53.47402,
+    "lng": -2.25072,
+    "name": "Forever Manchester",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "2nd Floor, 8 Hewitt St, Manchester M15 4GB"
   },
   {
-    "lat": 53.4871,
-    "lng": -2.2424,
-    "name": "victoria station",
-    "address": "Manchester M3 1NY"
+    "lat": 53.44293,
+    "lng": -2.27849,
+    "name": "British Heart Foundation",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "Chorlton Place, 7-9 Wilbraham Rd, Manchester M21 9AQ"
+  },
+  {
+    "lat": 53.48339,
+    "lng": -2.23400,
+    "name": "Greater Manchester Youth Network",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "46-50, Oldham St, Manchester M4 1LE"
+  },
+  {
+    "lat": 53.45945,
+    "lng": -2.22471,
+    "name": "Ronald McDonald House Manchester",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "Hathersage Rd, Manchester M13 0BH"
+  },
+  {
+    "lat": 53.48536,
+    "lng": -2.23367,
+    "name": "Back on Track Manchester",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "20 Swan St, Manchester M4 5JW"
+  },
+  {
+    "lat": 53.47690,
+    "lng": -2.23803,
+    "name": "Barnabus",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "45 Bloom St, Manchester M1 3LY"
+  },
+  {
+    "lat": 53.47117,
+    "lng": -2.23728,
+    "name": "The Proud Trust\n",
+    "eventType": "Charity",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 20,
+    "address": "49-51 Sidney St, Manchester M1 7HB"
   }
 ]
