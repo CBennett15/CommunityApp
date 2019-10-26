@@ -24,15 +24,34 @@ class _MyMapState extends State<MyMap> {
           markerId: MarkerId(locations[i].name),
           position: LatLng(locations[i].lat, locations[i].lng),
           infoWindow: InfoWindow(
-            title: locations[i].name,
-            snippet: locations[i].address,
-          ),
+              title: locations[i].name,
+              snippet: locations[i].address,
+              onTap: () {
+                print('hellooooooo');
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('info here....'),
+                      content: const Text('more items here....'),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Ok'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
         );
         circles.add(new Circle(
             circleId: CircleId(i.toString()),
             center: LatLng(locations[i].lat, locations[i].lng),
             radius: 60,
-            fillColor: Colors.green.withOpacity(0.3),
+            fillColor: Colors.red.withOpacity(0.3),
             strokeColor: Colors.transparent));
         _markers[locations[i].name] = marker;
       }
