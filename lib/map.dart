@@ -4,7 +4,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 void main() {
   runApp(MyMap());
-  // loadPins();
 }
 
 class MyMap extends StatefulWidget {
@@ -44,7 +43,7 @@ class _MyMapState extends State<MyMap> {
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
               target: const LatLng(53.483959, -2.244644),
-              zoom: 11.0,
+              zoom: 13.0,
             ),
             markers: _markers.values.toSet(),
           ),
