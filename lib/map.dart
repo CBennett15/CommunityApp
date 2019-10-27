@@ -12,17 +12,18 @@ class MyMap extends StatefulWidget {
 }
 
 class _MyMapState extends State<MyMap> {
+  // String icon = "assets/alien.png";
   final Map<String, Marker> _markers = {};
   Set<Circle> circles = new Set<Circle>();
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final locations = await pins.loadPins();
-    print(locations[0].name);
     setState(() {
       _markers.clear();
       for (var i = 0; i < locations.length; i++) {
         final marker = Marker(
           markerId: MarkerId(locations[i].name),
           position: LatLng(locations[i].lat, locations[i].lng),
+          // icon: BitmapDescriptor.fromAsset(icon),
           infoWindow: InfoWindow(
               title: locations[i].eventType,
               snippet: locations[i].address,
@@ -46,6 +47,12 @@ class _MyMapState extends State<MyMap> {
                             Navigator.of(context).pop();
                           },
                         ),
+                        FlatButton(
+                          child: Text('Attend Event'),
+                          onPressed: () {
+                            print('helloooo....');
+                          },
+                        )
                       ],
                     );
                   },
@@ -55,8 +62,10 @@ class _MyMapState extends State<MyMap> {
         circles.add(new Circle(
             circleId: CircleId(i.toString()),
             center: LatLng(locations[i].lat, locations[i].lng),
-            radius: 60,
-            fillColor: Colors.red.withOpacity(0.3),
+            radius: locations[i].peopleNeeded > 25 ? 100 : 50,
+            fillColor: locations[i].eventType == 'Charity'
+                ? Colors.red.withOpacity(0.3)
+                : Colors.green.withOpacity(0.3),
             strokeColor: Colors.transparent));
         _markers[locations[i].name] = marker;
       }

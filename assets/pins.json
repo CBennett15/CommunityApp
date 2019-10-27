@@ -26,7 +26,7 @@
     "eventType": "Charity",
     "pointsAwarded": 20,
     "organizer": "",
-    "peopleNeeded": 20,
+    "peopleNeeded": 50,
     "address": "46-50, Oldham St, Manchester M4 1LE"
   },
   {
@@ -46,7 +46,7 @@
     "eventType": "Litter Picking",
     "pointsAwarded": 20,
     "organizer": "",
-    "peopleNeeded": 20,
+    "peopleNeeded": 10,
     "address": "20 Swan St, Manchester M4 5JW"
   },
   {
