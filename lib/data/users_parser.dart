@@ -9,16 +9,18 @@ Future<String> _loadUsersAsset() async {
 Future loadUsers() async {
   String jsonUsers = await _loadUsersAsset();
   List<Users> users = _parseJsonForUsers(jsonUsers);
+
   return users;
 }
 
 List<Users> _parseJsonForUsers(String jsonString) {
   List decoded = jsonDecode(jsonString);
 
+
   List<Users> returnUsers = new List<Users>();
   for (var i = 0; i < decoded.length; i++) {
     returnUsers.add(new Users(decoded[i]['id'], decoded[i]['username'],
-        decoded[i]['email'], decoded[i]['password'], decoded[i]['points'], decoded[i]['friends']));
+        decoded[i]['email'], decoded[i]['password'], decoded[i]['points'], decoded[i]['friends'].cast<int>()));
   }
   return returnUsers;
 }
@@ -28,7 +30,7 @@ class Users {
   final String username;
   final String email;
   final String password;
-  double points = 0;
+  int points = 0;
   List<int> friends = [];
 
   Users(this.id, this.username, this.email, this.password, this.points, this.friends);
@@ -42,21 +44,17 @@ class Users {
   String getEmail(){
     return email;
   }
-  double getPoints(){
+  int getPoints(){
     return points;
   }
   Future getAllFriends()async{
     final allFriends = await loadUsers();
-    print("TESSSST");
 
-    print(username);
-    print(friends.length);
     List<Users> returnFriends = [];
+
     for(int i = 0; i < friends.length; i++){
-      print(friends[i]);
       returnFriends.add(allFriends[friends[i]]);
     }
-    print(returnFriends.length);
     return returnFriends;
   }
   int getFriendByID(int ID){

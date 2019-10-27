@@ -6,28 +6,12 @@ class MyLeaderboard extends StatefulWidget {
   final users.Users activeUser;
   List<DataRow> tableRows;
 
-  Future<void> getFriendsRows(users.Users user) async {
-    final allFriends = await user.getAllFriends();
-    print(allFriends.length);
-    allFriends.sort((a,b) => a.points.compareTo(b.points));
-    for (int i = 0; i < allFriends.length; i++) {
-      print(allFriends[i].username);
-      tableRows.add(DataRow(
-        cells: [
-          DataCell(
-            Text(allFriends[i].username),
-          ),
-          DataCell(
-            Text(allFriends[i].points),
-          ),
-        ],
-      ));
-    }
-  }
+
+
 
   MyLeaderboard(this.activeUser){
     tableRows = new List<DataRow>();
-    getFriendsRows(activeUser);
+//    getFriendsRows(activeUser);
   }
   @override
   _MyLeaderboardState createState() => _MyLeaderboardState();
@@ -35,13 +19,36 @@ class MyLeaderboard extends StatefulWidget {
 
 class _MyLeaderboardState extends State<MyLeaderboard> {
   final title = 'My Account';
-  List<DataRow> tableRows;
-  users.Users activeUser;
+  List<DataRow> tableRows = new List<DataRow>();
 
   @override
   initState() {
     super.initState();
-    tableRows = widget.tableRows;
+    getFriendsRows(widget.activeUser);
+  }
+
+  Future<void> getFriendsRows(users.Users user) async {
+    print("newTest1");
+    List<DataRow> tempRows = new List<DataRow>();
+    final allFriends = await user.getAllFriends();
+    print(allFriends.length);
+    for (int i = 0; i < allFriends.length; i++) {
+      print("newTest2");
+      print(allFriends[i].username);
+      tempRows.add(DataRow(
+        cells: [
+          DataCell(
+            Text(allFriends[i].username),
+          ),
+          DataCell(
+            Text(allFriends[i].points.toString()),
+          ),
+        ],
+      ));
+    }
+    setState(() => {
+      tableRows = tempRows
+    });
   }
 
 
@@ -59,7 +66,7 @@ class _MyLeaderboardState extends State<MyLeaderboard> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyHomeHub(activeUser)),);
+                  MaterialPageRoute(builder: (context) => MyHomeHub(widget.activeUser)),);
               },
             )]
       ),
@@ -68,7 +75,8 @@ class _MyLeaderboardState extends State<MyLeaderboard> {
           DataColumn(label: Text('Name')),
           DataColumn(label: Text('Points')),
         ],
-        rows: tableRows
+        columnSpacing: 235,
+        rows: tableRows,
       )
     )
   );

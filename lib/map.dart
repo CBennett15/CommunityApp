@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'data/pins_parser.dart' as pins;
 import 'data/users_parser.dart' as users;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hacktheplanet/home.dart';
 import './home.dart';
+
 
 class MyMap extends StatefulWidget {
   users.Users activeUser;
@@ -21,22 +23,22 @@ class _MyMapState extends State<MyMap> {
     activeUser = current;
   }
 
+  String icon = "assets/alien.png";
   final Map<String, Marker> _markers = {};
   Set<Circle> circles = new Set<Circle>();
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final locations = await pins.loadPins();
-    print(locations[0].name);
     setState(() {
       _markers.clear();
       for (var i = 0; i < locations.length; i++) {
         final marker = Marker(
           markerId: MarkerId(locations[i].name),
           position: LatLng(locations[i].lat, locations[i].lng),
+          icon: BitmapDescriptor.fromAsset(icon),
           infoWindow: InfoWindow(
               title: locations[i].eventType,
               snippet: locations[i].address,
               onTap: () {
-                print('hellooooooo');
                 showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
@@ -59,7 +61,7 @@ class _MyMapState extends State<MyMap> {
                         FlatButton(
                           child: Text('Attend Event'),
                           onPressed: () {
-                            print('helloooo....');
+                            locations[i].peopleNeeded -= 1;
                           },
                         )
                       ],
@@ -71,7 +73,7 @@ class _MyMapState extends State<MyMap> {
         circles.add(new Circle(
             circleId: CircleId(i.toString()),
             center: LatLng(locations[i].lat, locations[i].lng),
-            radius: locations[i].peopleNeeded > 25 ? 100 : 50,
+            radius: locations[i].peopleNeeded > 25 ? 150 : 75,
             fillColor: locations[i].eventType == 'Charity'
                 ? Colors.red.withOpacity(0.3)
                 : Colors.green.withOpacity(0.3),
@@ -101,12 +103,13 @@ class _MyMapState extends State<MyMap> {
           body: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
-              target: const LatLng(53.483959, -2.244644),
+              target: const LatLng(53.4750, -2.2355),
               zoom: 15.0,
             ),
             markers: _markers.values.toSet(),
             circles: circles,
           ),
         ),
+        debugShowCheckedModeBanner: false,
       );
 }

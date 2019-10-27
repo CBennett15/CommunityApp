@@ -3,17 +3,20 @@ import 'package:hacktheplanet/home.dart';
 import 'data/users_parser.dart' as users;
 
 class MyAccount extends StatefulWidget {
-  final users.Users activeUser;
-  MyAccount(this.activeUser);
+  final users.Users currentUser;
+  MyAccount(this.currentUser);
   @override
-  _MyAccountState createState() => _MyAccountState(activeUser);
+  _MyAccountState createState() => _MyAccountState();
 }
 
 class _MyAccountState extends State<MyAccount> {
   final title = 'My Account';
   users.Users activeUser;
-    _MyAccountState(users.Users current){
-    activeUser = current;
+
+  @override
+  initState() {
+    super.initState();
+    activeUser = widget.currentUser;
   }
 
   Widget pair = Expanded(
@@ -33,6 +36,7 @@ class _MyAccountState extends State<MyAccount> {
     title: title,
     home: Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.green,
         title: Text(title),
           actions: <Widget>[
       // action button

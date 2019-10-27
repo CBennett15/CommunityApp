@@ -10,29 +10,33 @@ class MyHomeHub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print("Teststsest");
+    print(activeUser.username);
+
   Widget bigCircle = new Container(
   width: 400.0,
   height: 400.0,
   decoration: new BoxDecoration(
-  color: Colors.orange,
+  color: Colors.green,
   shape: BoxShape.circle,
   ),
   );
 
   return new Material(
-    color: Colors.blue,
+    color: Colors.black,
       child: new Center(
         child: new Stack(
           children: <Widget>[
             bigCircle,
             new Positioned(
             child: new CircleButton(onTap: () => print("Help"), iconData: Icons.help),
-            top: 240.0,
-            left: 130.0,
+            top: 290.0,
+            left: 150.0,
             ),
             new Positioned(
             child: new CircleButton(onTap: () => print("Rewards"), iconData: Icons.timer),
-            top: 120.0,
+            top: 150.0,
             left: 10.0,
             ),
             new Positioned(
@@ -40,7 +44,7 @@ class MyHomeHub extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => MyLeaderboard(activeUser)),
             ), iconData: Icons.list),
-            top: 120.0,
+            top: 150.0,
             right: 10.0,
             ),
             new Positioned(
@@ -49,15 +53,15 @@ class MyHomeHub extends StatelessWidget {
               MaterialPageRoute(builder: (context) => MyMap(activeUser)),
             ), iconData: Icons.map),
             top: 10.0,
-            left: 130.0,
+            left: 150.0,
             ),
             new Positioned(
             child: new CircleButton(onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => MyAccount(activeUser)),
             ), iconData: Icons.face),
-            top: 120.0,
-            left: 130.0,
+            top: 150.0,
+            left: 150.0,
             ),
           ],
         ),
@@ -83,12 +87,12 @@ class CircleButton extends StatelessWidget {
         width: size,
         height: size,
         decoration: new BoxDecoration(
-          color: Colors.white,
+          color: Colors.black,
           shape: BoxShape.circle,
         ),
         child: new Icon(
           iconData,
-          color: Colors.black,
+          color: Colors.green,
         ),
       ),
     );

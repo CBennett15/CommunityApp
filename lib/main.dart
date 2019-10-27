@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<bool> checkDetails(String email, String password) async {
     final allUsers = await users.loadUsers();
     for(int i = 0; i < allUsers.length; i++){
+      print(allUsers[i].username);
       if(email == allUsers[i].email && password == allUsers[i].password){
         currentUser = new users.Users(allUsers[i].id, allUsers[i].username, allUsers[i].email, allUsers[i].password, allUsers[i].points, allUsers[i].friends);
         routeHome(currentUser);
@@ -122,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final loginButon = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
+      color: Colors.green,
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -137,43 +138,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
 
-    final skipToMapButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          _onPressed();
-          checkDetails("jim@email.com", "jimpass");
-          routeMap(currentUser);
-        },
-        child: Text("Skip To Map",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
-      ),
-    );
-
-    final skipToHubButton = Material(
-      elevation: 5.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff01A0C7),
-      child: MaterialButton(
-        minWidth: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          _onPressed();
-        checkDetails("jim@email.com", "jimpass");
-        routeHome(currentUser);
-        },
-        child: Text("Skip To Hub",
-            textAlign: TextAlign.center,
-            style: style.copyWith(
-                color: Colors.white, fontWeight: FontWeight.bold)),
-      ),
-    );
 
 
     // This method is rerun every time setState is called, for instance as done
@@ -207,14 +171,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 35.0,
                 ),
                 loginButon,
-                SizedBox(
-                  height: 15.0,
-                ),
-                skipToMapButton,
-                SizedBox(
-                  height: 15.0,
-                ),
-                skipToHubButton,
                 SizedBox(
                   height: 15.0,
                 )
