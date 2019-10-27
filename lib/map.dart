@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'data/pins_parser.dart' as pins;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hacktheplanet/home.dart';
 
 void main() {
   runApp(MyMap());
@@ -50,7 +51,7 @@ class _MyMapState extends State<MyMap> {
                         FlatButton(
                           child: Text('Attend Event'),
                           onPressed: () {
-                            print('helloooo....');
+                            locations[i].peopleNeeded -= 1;
                           },
                         )
                       ],
@@ -76,9 +77,19 @@ class _MyMapState extends State<MyMap> {
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: Text('Map of Alien Invasion'),
-            backgroundColor: Colors.green[700],
-          ),
+              title: Text('Map of Alien Invasion'),
+              backgroundColor: Colors.green[700],
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomeHub()),
+                    );
+                  },
+                )
+              ]),
           body: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
