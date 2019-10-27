@@ -63,7 +63,7 @@ class _MyMapState extends State<MyMap> {
         circles.add(new Circle(
             circleId: CircleId(i.toString()),
             center: LatLng(locations[i].lat, locations[i].lng),
-            radius: locations[i].peopleNeeded > 25 ? 100 : 50,
+            radius: locations[i].peopleNeeded > 25 ? 150 : 75,
             fillColor: locations[i].eventType == 'Charity'
                 ? Colors.red.withOpacity(0.3)
                 : Colors.green.withOpacity(0.3),
@@ -100,5 +100,6 @@ class _MyMapState extends State<MyMap> {
             circles: circles,
           ),
         ),
+        debugShowCheckedModeBanner: false,
       );
 }
