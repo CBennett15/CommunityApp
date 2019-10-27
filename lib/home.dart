@@ -10,10 +10,6 @@ class MyHomeHub extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    print("Teststsest");
-    print(activeUser.username);
-
   Widget bigCircle = new Container(
   width: 400.0,
   height: 400.0,
@@ -24,7 +20,7 @@ class MyHomeHub extends StatelessWidget {
   );
 
   return new Material(
-    color: Colors.black,
+    color: Colors.white,
       child: new Center(
         child: new Stack(
           children: <Widget>[

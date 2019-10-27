@@ -4,6 +4,7 @@ import 'data/users_parser.dart' as users;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hacktheplanet/home.dart';
 import './home.dart';
+import './inviteFriend.dart';
 
 
 class MyMap extends StatefulWidget {
@@ -74,6 +75,15 @@ class _MyMapState extends State<MyMap> {
                                         child: Text('Ok'),
                                         onPressed: () {
                                           Navigator.of(context).pop();
+                                        },
+                                      ),
+                                      FlatButton(
+                                        child: Text('Invite Friend'),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => MyInvite(activeUser)),
+                                          );
                                         },
                                       )
                                     ],

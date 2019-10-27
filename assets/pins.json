@@ -88,5 +88,55 @@
     "organizer": "",
     "peopleNeeded": 30,
     "address": "St Ann St, Manchester M2 7LF"
+  },
+  {
+    "lat": 53.47672,
+    "lng": -2.25375,
+    "name": "Science and Industry Museum\n",
+    "eventType": "Volunteering",
+    "pointsAwarded": 30,
+    "organizer": "HackManchester",
+    "peopleNeeded": 30,
+    "address": "Liverpool Rd, Manchester M3 4FP"
+  },
+  {
+    "lat": 53.45237,
+    "lng": -2.24597,
+    "name": "Alexandra Park\n",
+    "eventType": "Litter Picking",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 30,
+    "address": "180 Russell St, Manchester M16 7JL"
+  },
+  {
+    "lat": 53.47668,
+    "lng": -2.23482,
+    "name": "Sackville Gardens\n",
+    "eventType": "Litter Picking",
+    "pointsAwarded": 20,
+    "organizer": "",
+    "peopleNeeded": 30,
+    "address": "Manchester M1 3HB"
+  },
+  {
+    "lat": 53.46485,
+    "lng": -2.23179,
+    "name": "Manchester Central Foodbank\n",
+    "eventType": "Food Bank",
+    "pointsAwarded": 25,
+    "organizer": "",
+    "peopleNeeded": 30,
+    "address": "Oxford Rd, Manchester M13 9PG\n"
+  },
+  {
+    "lat": 53.46643,
+    "lng": -2.25298,
+    "name": "The Childrens Society\n",
+    "eventType": "Volunteering",
+    "pointsAwarded": 25,
+    "organizer": "",
+    "peopleNeeded": 30,
+    "address": "Hope Young Refugee Service, Zion Community Resource Centre, Manchester M15 4ZY"
   }
 ]

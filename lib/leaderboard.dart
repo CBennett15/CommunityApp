@@ -6,9 +6,6 @@ class MyLeaderboard extends StatefulWidget {
   final users.Users activeUser;
   List<DataRow> tableRows;
 
-
-
-
   MyLeaderboard(this.activeUser){
     tableRows = new List<DataRow>();
 //    getFriendsRows(activeUser);
@@ -18,7 +15,7 @@ class MyLeaderboard extends StatefulWidget {
 }
 
 class _MyLeaderboardState extends State<MyLeaderboard> {
-  final title = 'My Account';
+  final title = 'My Leaderboard';
   List<DataRow> tableRows = new List<DataRow>();
 
   @override
@@ -28,12 +25,10 @@ class _MyLeaderboardState extends State<MyLeaderboard> {
   }
 
   Future<void> getFriendsRows(users.Users user) async {
-    print("newTest1");
     List<DataRow> tempRows = new List<DataRow>();
     final allFriends = await user.getAllFriends();
     print(allFriends.length);
     for (int i = 0; i < allFriends.length; i++) {
-      print("newTest2");
       print(allFriends[i].username);
       tempRows.add(DataRow(
         cells: [
@@ -57,7 +52,7 @@ class _MyLeaderboardState extends State<MyLeaderboard> {
   Widget build(BuildContext context) => MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-          title: Text('Map of Alien Invasion'),
+          title: Text('My Leaderboard'),
           backgroundColor: Colors.green[700],
           actions: <Widget>[
             // action button
