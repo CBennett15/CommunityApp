@@ -20,7 +20,10 @@ class _MyAccountState extends State<MyAccount> {
       // align the text to the left instead of centered
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text('Title', style: TextStyle(fontSize: 16),),
+        Text(
+          'Title',
+          style: TextStyle(fontSize: 16),
+        ),
         Text('subtitle'),
       ],
     ),
@@ -28,38 +31,37 @@ class _MyAccountState extends State<MyAccount> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-
-    title: title,
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-          actions: <Widget>[
-      // action button
-        IconButton(
-          icon: Icon(Icons.home),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MyHomeHub()),);
-        },
-      )]
-    ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.verified_user),
-            title: Text('Map'),
+        title: title,
+        home: Scaffold(
+          appBar: AppBar(title: Text(title), actions: <Widget>[
+            // action button
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHomeHub()),
+                );
+              },
+            )
+          ]),
+          body: ListView(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.verified_user),
+                title: Text('Map'),
+              ),
+              ListTile(
+                leading: Icon(Icons.email),
+                title: Text('Album'),
+              ),
+              ListTile(
+                leading: Icon(Icons.score),
+                title: Text('Phone'),
+              ),
+            ],
           ),
-          ListTile(
-            leading: Icon(Icons.email),
-            title: Text('Album'),
-          ),
-          ListTile(
-            leading: Icon(Icons.score),
-            title: Text('Phone'),
-          ),
-        ],
-      ),
-    ),
-  );
+        ),
+        debugShowCheckedModeBanner: false,
+      );
 }
