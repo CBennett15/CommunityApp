@@ -52,6 +52,23 @@ class _MyMapState extends State<MyMap> {
                           child: Text('Attend Event'),
                           onPressed: () {
                             locations[i].peopleNeeded -= 1;
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text('Awesome, good work!'),
+                                    content: Text(
+                                        'You will be awarded points soon, soon those pesky aliens will be gone...'),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('Ok'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  );
+                                });
                           },
                         )
                       ],

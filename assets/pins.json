@@ -68,5 +68,25 @@
     "organizer": "",
     "peopleNeeded": 20,
     "address": "49-51 Sidney St, Manchester M1 7HB"
+  },
+  {
+    "lat": 53.47878,
+    "lng": -2.23302,
+    "name": "DoubleTree\n",
+    "eventType": "Litter Picking",
+    "pointsAwarded": 25,
+    "organizer": "",
+    "peopleNeeded": 30,
+    "address": "One Piccadilly Place, 1 Auburn St, Manchester M1 3DGB"
+  },
+  {
+    "lat": 53.4757,
+    "lng": -2.2408,
+    "name": "St Ann's Church\n",
+    "eventType": "Food Bank",
+    "pointsAwarded": 25,
+    "organizer": "",
+    "peopleNeeded": 30,
+    "address": "St Ann St, Manchester M2 7LF"
   }
 ]
