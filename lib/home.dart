@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import './map.dart';
 import './account.dart';
-import 'data/pins_parser.dart' as pins;
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-void main() {
-  runApp(new MaterialApp(home: new MyHomeHub()));
-  // loadPins();
-}
+import 'data/users_parser.dart' as users;
 
 class MyHomeHub extends StatelessWidget {
+  users.Users activeUser;
+  MyHomeHub(@required users.Users current){
+  activeUser = current;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +44,7 @@ class MyHomeHub extends StatelessWidget {
             new Positioned(
             child: new CircleButton(onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyMap()),
+              MaterialPageRoute(builder: (context) => MyMap(activeUser)),
             ), iconData: Icons.map),
             top: 10.0,
             left: 130.0,
@@ -54,7 +52,7 @@ class MyHomeHub extends StatelessWidget {
             new Positioned(
             child: new CircleButton(onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyAccount()),
+              MaterialPageRoute(builder: (context) => MyAccount(activeUser)),
             ), iconData: Icons.face),
             top: 120.0,
             left: 130.0,

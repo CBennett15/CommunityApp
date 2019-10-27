@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'data/pins_parser.dart' as pins;
+import 'data/users_parser.dart' as users;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-void main() {
-  runApp(MyMap());
-}
+import './home.dart';
 
 class MyMap extends StatefulWidget {
+  users.Users activeUser;
+  MyMap(@required users.Users current){
+    activeUser = current;
+  }
+
   @override
-  _MyMapState createState() => _MyMapState();
+  _MyMapState createState() => _MyMapState(activeUser);
 }
 
 class _MyMapState extends State<MyMap> {
+  users.Users activeUser;
+  _MyMapState(@required users.Users current){
+    activeUser = current;
+  }
+
   final Map<String, Marker> _markers = {};
   Set<Circle> circles = new Set<Circle>();
   Future<void> _onMapCreated(GoogleMapController controller) async {
@@ -64,6 +72,16 @@ class _MyMapState extends State<MyMap> {
           appBar: AppBar(
             title: Text('Map of Alien Invasion'),
             backgroundColor: Colors.green[700],
+              actions: <Widget>[
+                // action button
+                IconButton(
+                  icon: Icon(Icons.home),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomeHub(activeUser)),);
+                  },
+                )]
           ),
           body: GoogleMap(
             onMapCreated: _onMapCreated,

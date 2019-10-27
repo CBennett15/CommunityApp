@@ -17,23 +17,23 @@ List<Users> _parseJsonForUsers(String jsonString) {
 
   List<Users> returnUsers = new List<Users>();
   for (var i = 0; i < decoded.length; i++) {
-    returnUsers.add(new Users(decoded[i]['lat'], decoded[i]['lng'],
-        decoded[i]['name'], decoded[i]['address']));
+    returnUsers.add(new Users(decoded[i]['id'], decoded[i]['username'],
+        decoded[i]['email'], decoded[i]['password']));
   }
   return returnUsers;
 }
 
 class Users {
-  final double id;
+  final int id;
   final String username;
   final String email;
   final String password;
   double points;
-  List<double> friends;
+  List<int> friends;
 
   Users(this.id, this.username, this.email, this.password);
 
-  double getID(){
+  int getID(){
     return id;
   }
   String getUserName(){
@@ -45,10 +45,10 @@ class Users {
   double getPoints(){
     return points;
   }
-  List<double> getAllFriends(){
+  List<int> getAllFriends(){
     return friends;
   }
-  double getFriendByID(double ID){
+  int getFriendByID(int ID){
     for(int i = 0; i < friends.length; i++){
       if(friends[i] == ID){
         return friends[i];

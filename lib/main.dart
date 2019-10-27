@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hacktheplanet/home.dart';
 import './map.dart';
+import 'data/users_parser.dart' as users;
+import 'data/pins_parser.dart' as pins;
 
 void main() => runApp(MyApp());
 
@@ -52,23 +54,28 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _emailInputController = TextEditingController();
   TextEditingController _passwordInputController = TextEditingController();
 
-  void checkDetails(String email, String password){
-    if(email == "me" && password == "pass"){
-      routeHome();
+  users.Users currentUser;
+
+  Future<bool> checkDetails(String email, String password) async {
+    final allUsers = await users.loadUsers();
+    for(int i = 0; i < allUsers.length; i++){
+      if(email == allUsers[i].email && password == allUsers[i].password){
+        currentUser = allUsers[i];
+        return true;
+      }
     }
   }
-
-  void routeMap() {
+  void routeMap(users.Users current) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MyMap()),
+      MaterialPageRoute(builder: (context) => MyMap(current)),
     );
   }
 
-  void routeHome() {
+  void routeHome(users.Users current) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => MyHomeHub()),
+      MaterialPageRoute(builder: (context) => MyHomeHub(current)),
     );
   }
 
@@ -118,7 +125,9 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
           _onPressed();
-          checkDetails(_email, _password);
+          if(checkDetails(_email, _password) == true) {
+            routeHome(currentUser);
+          };
         },
         child: Text("Login",
             textAlign: TextAlign.center,
@@ -134,7 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {routeMap();},
+        onPressed: () {
+          _onPressed();
+          checkDetails("jim@email.com", "jimpass");
+          routeMap(currentUser);
+        },
         child: Text("Skip To Map",
             textAlign: TextAlign.center,
             style: style.copyWith(
@@ -149,7 +162,11 @@ class _MyHomePageState extends State<MyHomePage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {routeHome();},
+        onPressed: () {
+          _onPressed();
+        checkDetails("jim@email.com", "jimpass");
+        routeHome(currentUser);
+        },
         child: Text("Skip To Hub",
             textAlign: TextAlign.center,
             style: style.copyWith(

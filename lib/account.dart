@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:hacktheplanet/home.dart';
-import 'data/pins_parser.dart' as pins;
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-void main() {
-  runApp(MyAccount());
-}
+import 'data/users_parser.dart' as users;
 
 class MyAccount extends StatefulWidget {
+  users.Users activeUser;
+  MyAccount(@required users.Users current){
+    activeUser = current;
+  }
   @override
-  _MyAccountState createState() => _MyAccountState();
+  _MyAccountState createState() => _MyAccountState(activeUser);
 }
 
 class _MyAccountState extends State<MyAccount> {
   final title = 'My Account';
+  users.Users activeUser;
+  _MyAccountState(@required users.Users current){
+    activeUser = current;
+  }
 
   Widget pair = Expanded(
     child: Column(
@@ -40,7 +43,7 @@ class _MyAccountState extends State<MyAccount> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MyHomeHub()),);
+              MaterialPageRoute(builder: (context) => MyHomeHub(activeUser)),);
         },
       )]
     ),
