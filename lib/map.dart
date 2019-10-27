@@ -15,6 +15,7 @@ class MyMap extends StatefulWidget {
 }
 
 class _MyMapState extends State<MyMap> {
+  // String icon = "assets/alien.png";
   users.Users activeUser;
   _MyMapState(@required users.Users current){
     activeUser = current;
@@ -32,7 +33,7 @@ class _MyMapState extends State<MyMap> {
           markerId: MarkerId(locations[i].name),
           position: LatLng(locations[i].lat, locations[i].lng),
           infoWindow: InfoWindow(
-              title: locations[i].name,
+              title: locations[i].eventType,
               snippet: locations[i].address,
               onTap: () {
                 print('hellooooooo');
@@ -40,8 +41,14 @@ class _MyMapState extends State<MyMap> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('info here....'),
-                      content: const Text('more items here....'),
+                      title: Text(locations[i].name),
+                      content: Text(locations[i].address +
+                          '\n' +
+                          'Points Awarded:' +
+                          locations[i].pointsAwarded.toString() +
+                          '\n' +
+                          'People Needed:' +
+                          locations[i].peopleNeeded.toString()),
                       actions: <Widget>[
                         FlatButton(
                           child: Text('Ok'),
@@ -49,6 +56,12 @@ class _MyMapState extends State<MyMap> {
                             Navigator.of(context).pop();
                           },
                         ),
+                        FlatButton(
+                          child: Text('Attend Event'),
+                          onPressed: () {
+                            print('helloooo....');
+                          },
+                        )
                       ],
                     );
                   },
@@ -58,8 +71,10 @@ class _MyMapState extends State<MyMap> {
         circles.add(new Circle(
             circleId: CircleId(i.toString()),
             center: LatLng(locations[i].lat, locations[i].lng),
-            radius: 60,
-            fillColor: Colors.red.withOpacity(0.3),
+            radius: locations[i].peopleNeeded > 25 ? 100 : 50,
+            fillColor: locations[i].eventType == 'Charity'
+                ? Colors.red.withOpacity(0.3)
+                : Colors.green.withOpacity(0.3),
             strokeColor: Colors.transparent));
         _markers[locations[i].name] = marker;
       }

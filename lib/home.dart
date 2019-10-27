@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hacktheplanet/leaderboard.dart';
 import './map.dart';
 import './account.dart';
 import 'data/users_parser.dart' as users;
 
 class MyHomeHub extends StatelessWidget {
-  users.Users activeUser;
-  MyHomeHub(@required users.Users current){
-  activeUser = current;
-  }
+  final users.Users activeUser;
+  MyHomeHub(this.activeUser);
 
   @override
   Widget build(BuildContext context) {
   Widget bigCircle = new Container(
-  width: 300.0,
-  height: 300.0,
+  width: 400.0,
+  height: 400.0,
   decoration: new BoxDecoration(
   color: Colors.orange,
   shape: BoxShape.circle,
@@ -37,7 +36,10 @@ class MyHomeHub extends StatelessWidget {
             left: 10.0,
             ),
             new Positioned(
-            child: new CircleButton(onTap: () => print("Leaderboard"), iconData: Icons.list),
+            child: new CircleButton(onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyLeaderboard(activeUser)),
+            ), iconData: Icons.list),
             top: 120.0,
             right: 10.0,
             ),
@@ -73,7 +75,7 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double size = 50.0;
+    double size = 100.0;
 
     return new InkResponse(
       onTap: onTap,

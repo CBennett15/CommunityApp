@@ -3,10 +3,8 @@ import 'package:hacktheplanet/home.dart';
 import 'data/users_parser.dart' as users;
 
 class MyAccount extends StatefulWidget {
-  users.Users activeUser;
-  MyAccount(@required users.Users current){
-    activeUser = current;
-  }
+  final users.Users activeUser;
+  MyAccount(this.activeUser);
   @override
   _MyAccountState createState() => _MyAccountState(activeUser);
 }
@@ -14,7 +12,7 @@ class MyAccount extends StatefulWidget {
 class _MyAccountState extends State<MyAccount> {
   final title = 'My Account';
   users.Users activeUser;
-  _MyAccountState(@required users.Users current){
+    _MyAccountState(users.Users current){
     activeUser = current;
   }
 
@@ -51,15 +49,15 @@ class _MyAccountState extends State<MyAccount> {
         children: <Widget>[
           ListTile(
             leading: Icon(Icons.verified_user),
-            title: Text('Map'),
+            title: Text(activeUser.getUserName()),
           ),
           ListTile(
             leading: Icon(Icons.email),
-            title: Text('Album'),
+            title: Text(activeUser.getEmail()),
           ),
           ListTile(
             leading: Icon(Icons.score),
-            title: Text('Phone'),
+            title: Text(activeUser.getPoints().toString()),
           ),
         ],
       ),

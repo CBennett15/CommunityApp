@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hacktheplanet/home.dart';
 import './map.dart';
 import 'data/users_parser.dart' as users;
-import 'data/pins_parser.dart' as pins;
 
 void main() => runApp(MyApp());
 
@@ -60,11 +59,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final allUsers = await users.loadUsers();
     for(int i = 0; i < allUsers.length; i++){
       if(email == allUsers[i].email && password == allUsers[i].password){
-        currentUser = allUsers[i];
+        currentUser = new users.Users(allUsers[i].id, allUsers[i].username, allUsers[i].email, allUsers[i].password, allUsers[i].points, allUsers[i].friends);
+        routeHome(currentUser);
         return true;
       }
     }
+    return false;
   }
+
+
   void routeMap(users.Users current) {
     Navigator.push(
       context,
@@ -125,9 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {
           _onPressed();
-          if(checkDetails(_email, _password) == true) {
-            routeHome(currentUser);
-          };
+          checkDetails(_email, _password);
         },
         child: Text("Login",
             textAlign: TextAlign.center,
@@ -194,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 SizedBox(
                   height: 155.0,
                   child: Image.asset(
-                    "assets/logo.png",
+                    "assets/logo.jpg",
                     fit: BoxFit.contain,
                   ),
                 ),
