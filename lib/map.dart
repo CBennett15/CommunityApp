@@ -12,7 +12,7 @@ class MyMap extends StatefulWidget {
 }
 
 class _MyMapState extends State<MyMap> {
-  // String icon = "assets/alien.png";
+  String icon = "assets/alien.png";
   final Map<String, Marker> _markers = {};
   Set<Circle> circles = new Set<Circle>();
   Future<void> _onMapCreated(GoogleMapController controller) async {
@@ -23,7 +23,7 @@ class _MyMapState extends State<MyMap> {
         final marker = Marker(
           markerId: MarkerId(locations[i].name),
           position: LatLng(locations[i].lat, locations[i].lng),
-          // icon: BitmapDescriptor.fromAsset(icon),
+          icon: BitmapDescriptor.fromAsset(icon),
           infoWindow: InfoWindow(
               title: locations[i].eventType,
               snippet: locations[i].address,
@@ -82,7 +82,7 @@ class _MyMapState extends State<MyMap> {
           body: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(
-              target: const LatLng(53.483959, -2.244644),
+              target: const LatLng(53.4750, -2.2355),
               zoom: 15.0,
             ),
             markers: _markers.values.toSet(),
