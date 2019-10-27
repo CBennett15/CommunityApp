@@ -20,7 +20,6 @@ class _MyMapState extends State<MyMap> {
   Future<void> _onMapCreated(GoogleMapController controller) async {
     final locations = await pins.loadPins();
     setState(() {
-      int value = 0;
       _markers.clear();
       for (var i = 0; i < locations.length; i++) {
         final marker = Marker(
