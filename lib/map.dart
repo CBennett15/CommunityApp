@@ -25,6 +25,7 @@ class _MyMapState extends State<MyMap> {
   }
 
   String icon = "assets/alien.png";
+
   final Map<String, Marker> _markers = {};
   Set<Circle> circles = new Set<Circle>();
   Future<void> _onMapCreated(GoogleMapController controller) async {
@@ -42,57 +43,61 @@ class _MyMapState extends State<MyMap> {
               onTap: () {
                 showDialog<void>(
                   context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text(locations[i].name),
-                      content: Text(locations[i].address +
-                          '\n' +
-                          'Points Awarded:' +
-                          locations[i].pointsAwarded.toString() +
-                          '\n' +
-                          'People Needed:' +
-                          locations[i].peopleNeeded.toString()),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text('Ok'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                        FlatButton(
-                          child: Text('Attend Event'),
-                          onPressed: () {
-                            locations[i].peopleNeeded -= 1;
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text('Awesome, good work!'),
-                                    content: Text(
-                                        'You will be awarded points soon, soon those pesky aliens will be gone...'),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text('Ok'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      ),
-                                      FlatButton(
+                  builder: (context) {
+                    int value = 0;
+                    return StatefulBuilder(builder: (context, setState) {
+                      return AlertDialog(
+                        title: Text(locations[i].name),
+                        content: Text(locations[i].address +
+                            '\n' +
+                            'Points Awarded:' +
+                            locations[i].pointsAwarded.toString() +
+                            '\n' +
+                            'People Needed:' +
+                            (locations[i].peopleNeeded + value).toString()),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text('Ok'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          FlatButton(
+                            child: Text('Attend Event'),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Awesome, good work!'),
+                                      content: Text(
+                                          'You will be awarded points soon, soon those pesky aliens will be gone...'),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text('Ok'),
+                                          onPressed: () {
+                                            setState(() {
+                                              value = value - 1;
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                         FlatButton(
                                         child: Text('Invite Friend'),
                                         onPressed: () {
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(builder: (context) => MyInvite(activeUser)),
                                           );
-                                        },
-                                      )
-                                    ],
-                                  );
-                                });
-                          },
-                        )
-                      ],
-                    );
+                                      ],
+                                    );
+                                  });
+                            },
+                          )
+                        ],
+                      );
+                    });
+
                   },
                 );
               }),
