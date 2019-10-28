@@ -1,0 +1,178 @@
+[
+  {
+    "id": 0,
+    "username": "jimbo",
+    "email": "jim@email.com",
+    "password": "jimpass",
+    "points": 23,
+    "friends": [1,11,17,19,14,4,7,8,2,3]
+  },
+  {
+    "id": 1,
+    "username": "chezza",
+    "email": "chezza@email.com",
+    "password": "chezzapass",
+    "points": 44,
+    "friends": [0,16,13,18,15,11,10,21,20,1,6,9,2,3]
+  },
+  {
+    "id": 2,
+    "username": "milo",
+    "email": "milo@email.com",
+    "password": "milopass",
+    "points": 74,
+    "friends": [3,1,15,17,8,0,5]
+  },
+  {
+    "id": 3,
+    "username": "mj",
+    "email": "mj@email.com",
+    "password": "mjpass",
+    "points": 10,
+    "friends": [1,0,7,3,17,13,2,5]
+  },
+  {
+    "id": 4,
+    "username": "arnie",
+    "email": "arnie@email.com",
+    "password": "arniepass",
+    "points": 33,
+    "friends": [5,16,18,12,15,1]
+  },
+  {
+    "id": 5,
+    "username": "sly",
+    "email": "sly@email.com",
+    "password": "slypass",
+    "points": 66,
+    "friends": [4,3,2,5,11,12]
+  },
+  {
+    "id": 6,
+    "username": "morgan",
+    "email": "morgan@email.com",
+    "password": "morganpass",
+    "points": 112,
+    "friends": [7,2,3,1,11,16,18,13,6,8]
+  },
+  {
+    "id": 7,
+    "username": "Kaylor",
+    "email": "Kaylor@email.com",
+    "password": "Kaylorpass",
+    "points": 149,
+    "friends": [4,3,16,19,21,13,6,8,2]
+  },
+  {
+    "id": 8,
+    "username": "Leroy",
+    "email": "Leroy@email.com",
+    "password": "Leroypass",
+    "points": 81,
+    "friends": [0,1,16,18,3,15,2]
+  },
+  {
+    "id": 9,
+    "username": "jaq",
+    "email": "jaq@email.com",
+    "password": "jaqpass",
+    "points": 292,
+    "friends": [5,8,15,17,21,18,2]
+  },
+  {
+    "id": 10,
+    "username": "tim",
+    "email": "tim@email.com",
+    "password": "timpass",
+    "points": 174,
+    "friends": [2,0,1,15,17,11,6,9]
+  },
+  {
+    "id": 11,
+    "username": "pod",
+    "email": "pod@email.com",
+    "password": "podpass",
+    "points": 135,
+    "friends": [0,5,7,17,14,16,19,21]
+  },
+  {
+    "id": 12,
+    "username": "justin",
+    "email": "justin@email.com",
+    "password": "justinpass",
+    "points": 204,
+    "friends": [9,1,5,7,0,3,6,13,17,21]
+  },
+  {
+    "id": 13,
+    "username": "liana",
+    "email": "liana@email.com",
+    "password": "lianapass",
+    "points": 254,
+    "friends": [14,7,9,13,18,19,3,2]
+  },
+  {
+    "id": 14,
+    "username": "hillary",
+    "email": "hillary@email.com",
+    "password": "hillarypass",
+    "points": 162,
+    "friends": [21,15,7,9,3,20,2]
+  },
+  {
+    "id": 15,
+    "username": "paul",
+    "email": "paul@email.com",
+    "password": "paulpass",
+    "points": 111,
+    "friends": [15,16,8,3,9,20,3,2]
+  },
+  {
+    "id": 16,
+    "username": "levi",
+    "email": "levi@email.com",
+    "password": "levipass",
+    "points": 284,
+    "friends": [21,17,13,16,20,11,6]
+  },
+  {
+    "id": 17,
+    "username": "trevor",
+    "email": "trevor@email.com",
+    "password": "trevorpass",
+    "points": 98,
+    "friends": [0,1,8,5,9,11,17,16,20,21,2]
+  },
+  {
+    "id": 18,
+    "username": "Orion",
+    "email": "Orion@email.com",
+    "password": "Orionpass",
+    "points": 164,
+    "friends": [1,0,3,2,7,8,11,16,14]
+  },
+  {
+    "id": 19,
+    "username": "fiona",
+    "email": "fiona@email.com",
+    "password": "fionapass",
+    "points": 283,
+    "friends": [16,13,6,9,12,3,2]
+  },
+  {
+    "id": 20,
+    "username": "shrek",
+    "email": "shrek@email.com",
+    "password": "shrekpass",
+    "points": 89,
+    "friends": [4,12,11,7,5,9,3,2]
+  },
+  {
+    "id": 21,
+    "username": "larry",
+    "email": "larry@email.com",
+    "password": "larrypass",
+    "points": 61,
+    "friends": [4,3,12,20,7,17,8,2]
+  }
+]

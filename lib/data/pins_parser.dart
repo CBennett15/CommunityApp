@@ -17,8 +17,15 @@ List<Pins> _parseJsonForPins(String jsonString) {
 
   List<Pins> returnPins = new List<Pins>();
   for (var i = 0; i < decoded.length; i++) {
-    returnPins.add(new Pins(decoded[i]['lat'], decoded[i]['lng'],
-        decoded[i]['name'], decoded[i]['address']));
+    returnPins.add(new Pins(
+        decoded[i]['lat'],
+        decoded[i]['lng'],
+        decoded[i]['name'],
+        decoded[i]['address'],
+        decoded[i]['eventType'],
+        decoded[i]['pointsAwarded'],
+        decoded[i]['organizer'],
+        decoded[i]['peopleNeeded']));
   }
   return returnPins;
 }
@@ -28,6 +35,11 @@ class Pins {
   final double lng;
   final String name;
   final String address;
+  String eventType;
+  int pointsAwarded;
+  String organizer;
+  int peopleNeeded;
 
-  Pins(this.lat, this.lng, this.name, this.address);
+  Pins(this.lat, this.lng, this.name, this.address, this.eventType,
+      this.pointsAwarded, this.organizer, this.peopleNeeded);
 }
