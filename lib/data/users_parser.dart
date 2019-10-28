@@ -9,31 +9,33 @@ Future<String> _loadUsersAsset() async {
 Future loadUsers() async {
   String jsonUsers = await _loadUsersAsset();
   List<Users> users = _parseJsonForUsers(jsonUsers);
+
   return users;
 }
 
 List<Users> _parseJsonForUsers(String jsonString) {
   List decoded = jsonDecode(jsonString);
 
+
   List<Users> returnUsers = new List<Users>();
   for (var i = 0; i < decoded.length; i++) {
-    returnUsers.add(new Users(decoded[i]['lat'], decoded[i]['lng'],
-        decoded[i]['name'], decoded[i]['address']));
+    returnUsers.add(new Users(decoded[i]['id'], decoded[i]['username'],
+        decoded[i]['email'], decoded[i]['password'], decoded[i]['points'], decoded[i]['friends'].cast<int>()));
   }
   return returnUsers;
 }
 
 class Users {
-  final double id;
+  final int id;
   final String username;
   final String email;
   final String password;
-  double points;
-  List<double> friends;
+  int points = 0;
+  List<int> friends = [];
 
-  Users(this.id, this.username, this.email, this.password);
+  Users(this.id, this.username, this.email, this.password, this.points, this.friends);
 
-  double getID(){
+  int getID(){
     return id;
   }
   String getUserName(){
@@ -42,13 +44,20 @@ class Users {
   String getEmail(){
     return email;
   }
-  double getPoints(){
+  int getPoints(){
     return points;
   }
-  List<double> getAllFriends(){
-    return friends;
+  Future getAllFriends()async{
+    final allFriends = await loadUsers();
+
+    List<Users> returnFriends = [];
+
+    for(int i = 0; i < friends.length; i++){
+      returnFriends.add(allFriends[friends[i]]);
+    }
+    return returnFriends;
   }
-  double getFriendByID(double ID){
+  int getFriendByID(int ID){
     for(int i = 0; i < friends.length; i++){
       if(friends[i] == ID){
         return friends[i];

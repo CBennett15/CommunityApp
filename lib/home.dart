@@ -1,69 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:hacktheplanet/leaderboard.dart';
 import './map.dart';
 import './account.dart';
-import 'data/pins_parser.dart' as pins;
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-void main() {
-  runApp(new MaterialApp(home: new MyHomeHub()));
-  // loadPins();
-}
+import 'data/users_parser.dart' as users;
 
 class MyHomeHub extends StatelessWidget {
+  final users.Users activeUser;
+  MyHomeHub(this.activeUser);
+
   @override
   Widget build(BuildContext context) {
-    Widget bigCircle = new Container(
-      width: 300.0,
-      height: 300.0,
-      decoration: new BoxDecoration(
-        color: Colors.orange,
-        shape: BoxShape.circle,
-      ),
-    );
+  Widget bigCircle = new Container(
+  width: 400.0,
+  height: 400.0,
+  decoration: new BoxDecoration(
+  color: Colors.green,
+  shape: BoxShape.circle,
+  ),
+  );
 
-    return new Material(
-      color: Colors.blue,
+  return new Material(
+    color: Colors.white,
       child: new Center(
         child: new Stack(
           children: <Widget>[
             bigCircle,
             new Positioned(
-              child: new CircleButton(
-                  onTap: () => print("Help"), iconData: Icons.help),
-              top: 240.0,
-              left: 130.0,
+            child: new CircleButton(onTap: () => print("Help"), iconData: Icons.help),
+            top: 290.0,
+            left: 150.0,
             ),
             new Positioned(
-              child: new CircleButton(
-                  onTap: () => print("Rewards"), iconData: Icons.timer),
-              top: 120.0,
-              left: 10.0,
+            child: new CircleButton(onTap: () => print("Rewards"), iconData: Icons.timer),
+            top: 150.0,
+            left: 10.0,
             ),
             new Positioned(
-              child: new CircleButton(
-                  onTap: () => print("Leaderboard"), iconData: Icons.list),
-              top: 120.0,
-              right: 10.0,
+            child: new CircleButton(onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyLeaderboard(activeUser)),
+            ), iconData: Icons.list),
+            top: 150.0,
+            right: 10.0,
             ),
             new Positioned(
-              child: new CircleButton(
-                  onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyMap()),
-                      ),
-                  iconData: Icons.map),
-              top: 10.0,
-              left: 130.0,
+            child: new CircleButton(onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyMap(activeUser)),
+            ), iconData: Icons.map),
+            top: 10.0,
+            left: 150.0,
             ),
             new Positioned(
-              child: new CircleButton(
-                  onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => MyAccount()),
-                      ),
-                  iconData: Icons.face),
-              top: 120.0,
-              left: 130.0,
+            child: new CircleButton(onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MyAccount(activeUser)),
+            ), iconData: Icons.face),
+            top: 150.0,
+            left: 150.0,
             ),
           ],
         ),
@@ -71,6 +65,7 @@ class MyHomeHub extends StatelessWidget {
     );
   }
 }
+
 
 class CircleButton extends StatelessWidget {
   final GestureTapCallback onTap;
@@ -80,7 +75,7 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double size = 50.0;
+    double size = 100.0;
 
     return new InkResponse(
       onTap: onTap,
@@ -88,14 +83,15 @@ class CircleButton extends StatelessWidget {
         width: size,
         height: size,
         decoration: new BoxDecoration(
-          color: Colors.white,
+          color: Colors.black,
           shape: BoxShape.circle,
         ),
         child: new Icon(
           iconData,
-          color: Colors.black,
+          color: Colors.green,
         ),
       ),
     );
   }
 }
+

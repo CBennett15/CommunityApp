@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'data/pins_parser.dart' as pins;
+import 'data/users_parser.dart' as users;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hacktheplanet/home.dart';
+import './home.dart';
+import './inviteFriend.dart';
 
-void main() {
-  runApp(MyMap());
-}
 
 class MyMap extends StatefulWidget {
+  users.Users activeUser;
+  MyMap(@required users.Users current){
+    activeUser = current;
+  }
+
   @override
-  _MyMapState createState() => _MyMapState();
+  _MyMapState createState() => _MyMapState(activeUser);
 }
 
 class _MyMapState extends State<MyMap> {
+  // String icon = "assets/alien.png";
+  users.Users activeUser;
+  _MyMapState(@required users.Users current){
+    activeUser = current;
+  }
+
   String icon = "assets/alien.png";
 
   final Map<String, Marker> _markers = {};
@@ -70,7 +81,14 @@ class _MyMapState extends State<MyMap> {
                                             });
                                             Navigator.of(context).pop();
                                           },
-                                        )
+                                        ),
+                                         FlatButton(
+                                        child: Text('Invite Friend'),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => MyInvite(activeUser)),
+                                          );
                                       ],
                                     );
                                   });
@@ -79,6 +97,7 @@ class _MyMapState extends State<MyMap> {
                         ],
                       );
                     });
+
                   },
                 );
               }),
@@ -100,19 +119,19 @@ class _MyMapState extends State<MyMap> {
   Widget build(BuildContext context) => MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-              title: Text('Map of Alien Invasion'),
-              backgroundColor: Colors.green[700],
+            title: Text('Map of Alien Invasion'),
+            backgroundColor: Colors.green[700],
               actions: <Widget>[
+                // action button
                 IconButton(
                   icon: Icon(Icons.home),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MyHomeHub()),
-                    );
+                      MaterialPageRoute(builder: (context) => MyHomeHub(activeUser)),);
                   },
-                )
-              ]),
+                )]
+          ),
           body: GoogleMap(
             onMapCreated: _onMapCreated,
             initialCameraPosition: CameraPosition(

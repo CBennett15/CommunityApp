@@ -47,7 +47,16 @@ flutter:
 
   assets:
     - assets/pins.json
+    - assets/users.json
     - assets/alien.png
+    - assets/logo.jpg
+    - assets/alien.png
+    - assets/alien1.png
+    - assets/alien2.png
+    - assets/alien3.jpg
+    - assets/alienRobot.jpg
+    - assets/alienXeno.jpg
+    - assets/predator.png
     - assets/icon/icon.png
   # To add assets to your application, add an assets section, like this:
   # assets:
